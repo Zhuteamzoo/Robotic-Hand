@@ -1,9 +1,9 @@
-# 🦾 How My Robotic Hand Works
+#  How My Robotic Hand Works
 
 For this project, I used a glove with **aluminum foil sensors** to control a **robotic hand made with servos and strings**.
 
 ## How I Built It
-I placed **two pieces of aluminum foil** on each finger of a glove — one on top and one on the bottom.  
+I placed **two pieces of aluminum foil** on each finger of a glove — one on the first half of my finger the second on the other half of my finger.  
 In the **middle of each finger**, I left a small gap so that when I **bend my finger**, the two foil pieces don’t touch.  
 When the finger is **straight**, they touch each other and complete the circuit.
 
