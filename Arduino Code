@@ -1,0 +1,96 @@
+#include <Servo.h>
+
+// Define servo objects for each finger
+Servo thumbServo;
+Servo indexServo;
+Servo middleServo;
+Servo ringServo;
+Servo pinkyServo;
+
+// Define analog input pins for the glove sensors
+const int thumbPin = A0;
+const int indexPin = A1;
+const int middlePin = A2;
+const int ringPin = A3;
+const int pinkyPin = A4;
+
+// Define threshold for closing the fingers (when analog value exceeds this)
+const int threshold = 500;
+
+void setup() {
+  // Attach servos to their corresponding pins
+  thumbServo.attach(5);  // Thumb servo to pin 5
+  indexServo.attach(6);  // Index servo to pin 6
+  middleServo.attach(9); // Middle servo to pin 9
+  ringServo.attach(10);  // Ring servo to pin 10
+  pinkyServo.attach(11); // Pinky servo to pin 11
+  
+  // Initialize the servos to open (0 degrees)
+  thumbServo.write(0);
+  indexServo.write(0);
+  middleServo.write(0);
+  ringServo.write(0);
+  pinkyServo.write(0);
+
+  // Start serial monitor for debugging
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read values from the glove sensors (thumb to pinky)
+  int thumbValue = analogRead(thumbPin);
+  int indexValue = analogRead(indexPin);
+  int middleValue = analogRead(middlePin);
+  int ringValue = analogRead(ringPin);
+  int pinkyValue = analogRead(pinkyPin);
+
+  // Debugging: Print the sensor values
+  Serial.print("Thumb: ");
+  Serial.print(thumbValue);
+  Serial.print("\tIndex: ");
+  Serial.print(indexValue);
+  Serial.print("\tMiddle: ");
+  Serial.print(middleValue);
+  Serial.print("\tRing: ");
+  Serial.print(ringValue);
+  Serial.print("\tPinky: ");
+  Serial.println(pinkyValue);
+
+  // Check each sensor and control the corresponding finger
+  // Thumb
+  if (thumbValue > threshold) {
+    thumbServo.write(90); // Close thumb (servo angle)
+  } else {
+    thumbServo.write(0);  // Open thumb (servo angle)
+  }
+
+  // Index
+  if (indexValue > threshold) {
+    indexServo.write(180); // Close index (servo angle)
+  } else {
+    indexServo.write(0);  // Open index (servo angle)
+  }
+
+  // Middle
+  if (middleValue > threshold) {
+    middleServo.write(180); // Close middle (servo angle)
+  } else {
+    middleServo.write(0);  // Open middle (servo angle)
+  }
+
+  // Ring
+  if (ringValue > threshold) {
+    ringServo.write(180); // Close ring (servo angle)
+  } else {
+    ringServo.write(0);  // Open ring (servo angle)
+  }
+
+  // Pinky
+  if (pinkyValue > threshold) {
+    pinkyServo.write(180); // Close pinky (servo angle)
+  } else {
+    pinkyServo.write(0);  // Open pinky (servo angle)
+  }
+
+  delay(50); // Small delay to avoid excessive updates
+}
