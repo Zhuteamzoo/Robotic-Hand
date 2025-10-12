@@ -62,6 +62,4 @@ Building this robotic hand taught me:
 
 ---
 
----
-
 ✨ *Built with curiosity, cardboard, and persistence.* 
